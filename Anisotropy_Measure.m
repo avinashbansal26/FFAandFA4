@@ -3,6 +3,7 @@ Caution:-
 For this code we used the tool box provided by Angelos Barmpoutis: Link for downloading the tool box is
 https://www.mathworks.com/matlabcentral/fileexchange/?term=authorid%3A89529.
 Here we added all the required files in this folder. It will be work fine as a stand alone programe.
+If you face any problem/query contact me on this email: avinashbansal26@gmail.com
 %}
 [All_Tensor_Coff]=open_HARDICeitec(); % Calling the function to get brain's data.
 g=UnitVectorsHardiCeitec();  % Gives gradient direction N*3.

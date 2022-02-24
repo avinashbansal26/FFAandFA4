@@ -1,4 +1,5 @@
 function [S41,S42,S43,S44,S45,S46,J41,J42,J43,J44,J45,J46]=Klevin_Eigen_Values(D)
+% Output: It gives you 12 scalres S41 to S46 and J41 to J46.
 f=sqrt(2);
 % Where TD is a either (15 coff *sizeX * sizeY) martix or  ( 6 * 6 * sizeX * sizeY)
 if size(D,1)==15

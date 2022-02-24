@@ -70,7 +70,7 @@ for i=1:size(S,1)
     end
 end
 %}
-figure; plotTensors(TC,1,[321  1]); % it will plot full brain inmage
+figure; plotTensors(TC,1,[321  1]); % it will plot full brain image
 % for some portion use like  figure; plotTensors(TC(:,20:30,30:40),1,[321  1]);
-% Rather than full brain image for small portion use TC= TC(:,20:30,30:40)
+% Rather than full brain image for small portion use TC = TC(:,20:30,30:40)
 end
