@@ -5,10 +5,13 @@ https://www.mathworks.com/matlabcentral/fileexchange/?term=authorid%3A89529.
 Here we added all the required files in this folder. It will be work fine as a stand alone programe.
 If you face any problem/query contact me on this email: avinashbansal26@gmail.com
 %}
+tic
 [All_Tensor_Coff]=open_HARDICeitec(); % Calling the function to get brain's data.
 g=UnitVectorsHardiCeitec();  % Gives gradient direction N*3.
 n_grad=size(g,1);
-GradientOrientations= g(1:n_grad,:);  % 64 gradient direction
+GradientOrientations= g(1:n_grad,:);  % N*3  gradient direction
+% Here we choose dirn from 2:65 exculding all [0 0 0] vector (defines no magnatic filed is applied).
+v= GradientOrientations(2:65,:);  % 64 gradient direction
 F_metric=Finsler_metric_as_variables();  % symbolic matrix which needs 15 cofficent and [1 3] vector
 %{
 Plot for some portion of brain use D=All_Tensor_Coff(:, 20:30, 30:40) where 1st cordinate of D is 15 cofficents
@@ -20,15 +23,13 @@ D=All_Tensor_Coff; % It will run for full 2D brain image and time consuling.
 T6D=Flattening_Tensor_6_by_6(D);
 %% 12 Sclar Measure 6 for S and 6 for J where S41=J41
 [S41,S42,S43,S44,S45,S46,J41,J42,J43,J44,J45,J46]=Klevin_Eigen_Values(D);
-
 for i=1:size(D,2)
     for j=1:size(D,3)       
         %% code for Finsler Fractional Anisotropy (FFA)
         TD=D(:,i,j)+.0001; % Adding small value(0.0001) to avoid division by zero error
-        v= GradientOrientations; % v is N*3 vectors
-        count=0;
+       count=0;
         for ii=1:size(v,1)
-            if (v(ii,1)>0)  % Choosing all direction on hemisphere
+            if (v(ii,1)>=0)  % Choosing all direction on hemisphere
                 count=count+1;
                 F(:,:,count)=double(F_metric (TD(1),TD(2),TD(3),TD(4),TD(5),TD(6),TD(7),TD(8),TD(9),TD(10),TD(11),...
                     TD(12),TD(13), TD(14), TD(15), v(ii,1),v(ii,2),v(ii,3)));
@@ -44,7 +45,7 @@ for i=1:size(D,2)
         FA4(i,j)=GFA(squeeze(T6D(:,:,i,j)));     % Riemann Anisotory after flatting of 4th order tensor
     end
 end
-
+toc;
 %% Ploting figures
 % For grayscale image uncomment colormap
 figure; imagesc(imrotate(FFA,90)); % colormap('gray');

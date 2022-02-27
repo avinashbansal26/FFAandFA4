@@ -10,7 +10,6 @@ file_dir=which(file_name);
 % info.Dimensions : Dimensions of Volume
 % info.PixelDimensions : Size of one pixel / voxel
 % Normally the 4th component of V tell about the number of gradient direction
-
 g=UnitVectorsHardiCeitec(); % Gives the gradient direction (g) N*3 vector form.
 n_grad=size(g,1);
 GradientOrientations= g(1:n_grad,:);
@@ -21,7 +20,7 @@ x_ly_no=51;   %% Choose the layer which you want to display in 2D plane
 y_ly_no=56;
 z_ly_no=36;
 tS=squeeze(S(x_ly_no,:,:,1)); % for other layer (e.g. Z) use like:  tS=squeeze(S(:,:,z_ly_no,1));
-figure;imagesc(imrotate(tS,90));
+figure;imagesc(imrotate(tS,90)); % for small portion use figure;imagesc(imrotate(tS(20:30,30:40),90));
 G=constructMatrixOfMonomials(GradientOrientations, order); %computes G from section 5.1 (ISBI'10)
 C=constructSetOf321Polynomials(order)'; %computes C from section 5.1 (ISBI'10)
 P=G*C;
