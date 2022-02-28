@@ -2,4 +2,4 @@ Download the Brain's data via this link.
 
 https://drive.google.com/file/d/18SC_GJqcK4Om5FPqYwsB7zd1I7LlUNJR/view?usp=sharing
 
-Note:- Here you need only to run Anisotropy_Measure.m file. Rest files are almost funtions 
+Note:- Here you need only to run Anisotropy_Measure.m file. Rest all files/fuctions  are dependent/called automatically. 
